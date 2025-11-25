@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Card Builder</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="card.css">
+</head>
+<body>
+
+	<main class="app">
+		<section class="controls">
+			<div class="controls-head">
+				<h2>Settings</h2>
+				<button id="resetBtn" class="btn">RESET</button>
+			</div>
+			<form id="cardForm" autocomplete="off">
+				<div class="field">
+					<label for="cardName">Card Name</label>
+					<div class="color-picker-group">
+						<input id="cardName" type="text" placeholder="e.g. Octocat" maxlength="24">
+						<input id="cardNameColor" type="color" value="#c9d1d9" class="color-preview" title="Text Color">
+						<input id="cardNameColorHex" type="text" placeholder="#c9d1d9" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+					</div>
+				</div>
+
+				<div class="field">
+					<label for="cardTypeText">Type</label>
+					<div class="grid-2">
+						<div style="display: flex; align-items: center; gap: 8px;">
+							<input id="cardTypeText" type="text" maxlength="16" placeholder="e.g. Electric" style="flex: 1;">
+							<label style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;">
+								<input type="checkbox" id="typeVisible" checked style="cursor: pointer;">
+							</label>
+						</div>
+						<div class="rarity-color-controls">
+							<div style="display: flex; align-items: center; gap: 8px;">
+								<input id="typeTextColor" type="color" value="#8b949e" class="color-preview" title="Text Color">
+								<input id="typeTextColorHex" type="text" placeholder="#8b949e" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+							</div>
+							<div style="display: flex; align-items: center; gap: 8px;">
+								<input id="typeBorderColor" type="color" value="#30363d" class="color-preview" title="Border Color">
+								<input id="typeBorderColorHex" type="text" placeholder="#30363d" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="field">
+					<label for="cardHp">HP</label>
+					<div class="grid-2">
+						<div style="display: flex; align-items: center; gap: 8px;">
+							<input id="cardHp" type="number" min="10" max="300" value="100" style="flex: 1;">
+							<label style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;">
+								<input type="checkbox" id="hpVisible" checked style="cursor: pointer;">
+							</label>
+						</div>
+						<div class="rarity-color-controls">
+							<div style="display: flex; align-items: center; gap: 8px;">
+								<input id="hpLabelColor" type="color" value="#8b949e" class="color-preview" title="HP Label Color">
+								<input id="hpLabelColorHex" type="text" placeholder="#8b949e" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+							</div>
+							<div style="display: flex; align-items: center; gap: 8px;">
+								<input id="hpValueColor" type="color" value="#58a6ff" class="color-preview" title="HP Value Color">
+								<input id="hpValueColorHex" type="text" placeholder="#58a6ff" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="field">
+					<button id="uploadCoverBtn" class="btn">Upload Card Image (404x303px)</button>
+					<input id="coverInput" type="file" accept="image/*" hidden>
+				</div>
+
+				<fieldset class="fieldset">
+					<legend>Attacks & Description</legend>
+					<div class="tab-navigation" style="display: flex; gap: 8px; margin-bottom: 12px; border-bottom: 1px solid var(--border);">
+						<button type="button" class="tab-btn active" data-tab="attacks" style="background: transparent; border: none; border-bottom: 2px solid var(--accent); color: var(--text); padding: 8px 12px; cursor: pointer; font-size: 12px;">Attacks</button>
+						<button type="button" class="tab-btn" data-tab="description" style="background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--muted); padding: 8px 12px; cursor: pointer; font-size: 12px;">Description</button>
+					</div>
+					<div id="attacksTab" class="tab-content">
+					<div class="grid-2">
+						<div class="field">
+							<label for="atk1Name">Attack 1 Name</label>
+							<input id="atk1Name" type="text" maxlength="20" placeholder="e.g. Commit">
+						</div>
+						<div class="field">
+							<label for="atk1Dmg">Damage</label>
+							<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+								<input id="atk1Dmg" type="number" min="0" max="300" placeholder="30" style="flex: 1; min-width: 60px;">
+								<label style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;">
+									<input type="checkbox" id="atk1DmgVisible" checked style="cursor: pointer;">
+								</label>
+								<input id="atk1DmgColor" type="color" value="#f85149" class="color-preview" title="Damage Color Attack 1" style="width: 32px; height: 32px; cursor: pointer; flex-shrink: 0;">
+								<input id="atk1DmgColorHex" type="text" placeholder="#f85149" maxlength="7" pattern="#[0-9A-Fa-f]{6}" style="width: 80px; height: 32px; padding: 4px 8px; font-size: 11px;">
+							</div>
+						</div>
+						<div class="field grid-span-2">
+							<label for="atk1Desc">Description</label>
+							<input id="atk1Desc" type="text" maxlength="180" placeholder="Adds additional damage per open issue">
+						</div>
+					</div>
+
+					<div class="grid-2">
+						<div class="field">
+							<label for="atk2Name">Attack 2 Name</label>
+							<input id="atk2Name" type="text" maxlength="20" placeholder="e.g. Merge">
+						</div>
+						<div class="field">
+							<label for="atk2Dmg">Damage</label>
+							<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+								<input id="atk2Dmg" type="number" min="0" max="300" placeholder="90" style="flex: 1; min-width: 60px;">
+								<label style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;">
+									<input type="checkbox" id="atk2DmgVisible" checked style="cursor: pointer;">
+								</label>
+								<input id="atk2DmgColor" type="color" value="#f85149" class="color-preview" title="Damage Color Attack 2" style="width: 32px; height: 32px; cursor: pointer; flex-shrink: 0;">
+								<input id="atk2DmgColorHex" type="text" placeholder="#f85149" maxlength="7" pattern="#[0-9A-Fa-f]{6}" style="width: 80px; height: 32px; padding: 4px 8px; font-size: 11px;">
+							</div>
+						</div>
+						<div class="field grid-span-2">
+							<label for="atk2Desc">Description</label>
+							<input id="atk2Desc" type="text" maxlength="180" placeholder="Heals all status problems when CI is green">
+						</div>
+					</div>
+
+					<div class="field grid-span-2">
+						<label>Text Colors for Attacks</label>
+						<div class="rarity-color-controls">
+							<div style="display: flex; align-items: center; gap: 8px;">
+								<span style="font-size: 12px; color: var(--muted);">Name:</span>
+								<input id="atkNameColor" type="color" value="#c9d1d9" class="color-preview" title="Text Color for Name">
+								<input id="atkNameColorHex" type="text" placeholder="#c9d1d9" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+							</div>
+							<div style="display: flex; align-items: center; gap: 8px;">
+								<span style="font-size: 12px; color: var(--muted);">Description:</span>
+								<input id="atkDescColor" type="color" value="#8b949e" class="color-preview" title="Text Color for Description">
+								<input id="atkDescColorHex" type="text" placeholder="#8b949e" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+							</div>
+						</div>
+					</div>
+					</div>
+					<div id="descriptionTab" class="tab-content" style="display: none;">
+						<div class="field">
+							<label for="descTitle">Title</label>
+							<input id="descTitle" type="text" maxlength="40" placeholder="e.g. Special Ability">
+						</div>
+						<div class="field">
+							<label for="descText">Text</label>
+							<textarea id="descText" rows="4" maxlength="400" placeholder="Enter description text here..."></textarea>
+						</div>
+						<div class="field">
+							<label>Text Colors</label>
+							<div class="rarity-color-controls">
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<span style="font-size: 12px; color: var(--muted);">Title:</span>
+									<input id="descTitleColor" type="color" value="#c9d1d9" class="color-preview" title="Text Color for Title">
+									<input id="descTitleColorHex" type="text" placeholder="#c9d1d9" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+								</div>
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<span style="font-size: 12px; color: var(--muted);">Text:</span>
+									<input id="descTextColor" type="color" value="#8b949e" class="color-preview" title="Text Color for Text">
+									<input id="descTextColorHex" type="text" placeholder="#8b949e" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+
+				<fieldset class="fieldset">
+					<legend>Footer</legend>
+					<div class="field">
+						<label for="footerNote">Footer Note</label>
+						<div class="color-picker-group">
+							<input id="footerNote" type="text" maxlength="40" placeholder="Tranding Card · 2025">
+							<input id="footerTextColor" type="color" value="#8b949e" class="color-preview" title="Text Color">
+							<input id="footerTextColorHex" type="text" placeholder="#8b949e" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+						</div>
+					</div>
+
+					<div class="field">
+						<label for="rarity">Rarity</label>
+						<div class="grid-2">
+							<input id="rarity" type="text" maxlength="20" placeholder="Rare ★">
+							<div class="rarity-color-controls">
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<input id="rarityTextColor" type="color" value="#c9d1d9" class="color-preview" title="Text Color">
+									<input id="rarityTextColorHex" type="text" placeholder="#c9d1d9" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+								</div>
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<input id="rarityBorderColor" type="color" value="#30363d" class="color-preview" title="Border Color">
+									<input id="rarityBorderColorHex" type="text" placeholder="#30363d" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="field">
+						<label for="cardNumber">Card Number (10 digits)</label>
+						<div class="grid-2">
+							<input id="cardNumber" type="text" inputmode="numeric" pattern="[0-9]{0,10}" maxlength="10" placeholder="0123456789">
+							<div class="rarity-color-controls">
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<input id="cardNumberTextColor" type="color" value="#c9d1d9" class="color-preview" title="Text Color">
+									<input id="cardNumberTextColorHex" type="text" placeholder="#c9d1d9" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+								</div>
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<input id="cardNumberBorderColor" type="color" value="#30363d" class="color-preview" title="Border Color">
+									<input id="cardNumberBorderColorHex" type="text" placeholder="#30363d" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+
+			</form>
+		</section>
+
+		<section class="preview-wrap">
+			<div class="preview-head">
+				<h2>Preview</h2>
+				<div class="preview-actions">
+					<button id="exportPngBtn" class="btn primary">EXPORT</button>
+					<button id="exportJsonBtn" class="btn">SAVE</button>
+					<button id="importJsonBtn" class="btn">LOAD</button>
+					<input id="importJsonInput" type="file" accept="application/json" hidden>
+				</div>
+			</div>
+			<div id="card" class="card">
+				<div class="card-top">
+					<div class="card-name">
+						<span id="viewName">Octocat</span>
+						<span id="viewType" class="type-pill">Legendary</span>
+					</div>
+					<div class="card-hp">
+						<span class="hp-label">HP</span>
+						<span id="viewHp" class="hp-value">100</span>
+					</div>
+				</div>
+				<div class="card-hero">
+					<img id="viewCover" alt="Cover" src="sample.png" />
+				</div>
+				<div class="card-body">
+					<div id="attacksView">
+						<div class="attack">
+							<div class="attack-line">
+								<span id="viewAtk1Name" class="attack-name">Commit</span>
+								<span id="viewAtk1Dmg" class="attack-dmg">30</span>
+							</div>
+							<div id="viewAtk1Desc" class="attack-desc">Adds additional damage per open issue</div>
+						</div>
+						<div class="divider"></div>
+						<div class="attack">
+							<div class="attack-line">
+								<span id="viewAtk2Name" class="attack-name">Merge</span>
+								<span id="viewAtk2Dmg" class="attack-dmg">90</span>
+							</div>
+							<div id="viewAtk2Desc" class="attack-desc">Heals all status problems when CI is green</div>
+						</div>
+					</div>
+					<div id="descriptionView" style="display: none;">
+						<div class="attack">
+							<div class="attack-line">
+								<span id="viewDescTitle" class="attack-name">Special Ability</span>
+							</div>
+							<div id="viewDescText" class="attack-desc" style="white-space: pre-wrap;">Enter description text here...</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<span id="viewFooter">Tranding Card · 2025</span>
+					<div class="footer-right">
+						<span id="viewRarity" class="rarity">Rare ★</span>
+						<span id="viewCardNumber" class="card-number">#0000000000</span>
+					</div>
+				</div>
+			</div>
+			<fieldset class="fieldset" style="margin-top: 20px;">
+				<legend>Rarity Symbols</legend>
+				<div class="symbols-list">
+					<button class="symbol-btn" data-symbol="★" title="Click to copy">★</button>
+					<button class="symbol-btn" data-symbol="♦" title="Click to copy">♦</button>
+					<button class="symbol-btn" data-symbol="●" title="Click to copy">●</button>
+					<button class="symbol-btn" data-symbol="■" title="Click to copy">■</button>
+					<button class="symbol-btn" data-symbol="▲" title="Click to copy">▲</button>
+					<button class="symbol-btn" data-symbol="♥" title="Click to copy">♥</button>
+					<button class="symbol-btn" data-symbol="✦" title="Click to copy">✦</button>
+				</div>
+			</fieldset>
+			<fieldset class="fieldset" style="margin-top: 12px;">
+				<legend>Card Colors</legend>
+				<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+					<div class="field">
+						<label for="borderColor">Border Color</label>
+						<div class="color-picker-group-2">
+							<input id="borderColor" type="color" value="#30363d" class="color-preview">
+							<input id="borderColorHex" type="text" placeholder="#30363d" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+						</div>
+					</div>
+					<div class="field">
+						<label for="lineColor">Line Color</label>
+						<div class="color-picker-group-2">
+							<input id="lineColor" type="color" value="#30363d" class="color-preview">
+							<input id="lineColorHex" type="text" placeholder="#30363d" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+						</div>
+					</div>
+					<div class="field">
+						<label for="innerColor">Inner Color</label>
+						<div class="color-picker-group-2">
+							<input id="innerColor" type="color" value="#000000" class="color-preview">
+							<input id="innerColorHex" type="text" placeholder="#000000" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+						</div>
+					</div>
+					<div class="field">
+						<label for="imageBgColor">Image Background</label>
+						<div class="color-picker-group-2">
+							<input id="imageBgColor" type="color" value="#0b0f14" class="color-preview">
+							<input id="imageBgColorHex" type="text" placeholder="#0b0f14" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</section>
+
+		<section class="templates-wrap">
+			<div class="templates-head">
+				<h2>Templates</h2>
+				<div style="display: flex; gap: 8px;">
+					<button id="saveTemplateBtn" class="btn primary">SAVE</button>
+					<button id="backupTemplateBtn" class="btn primary">BACKUP</button>
+				</div>
+			</div>
+			<fieldset class="fieldset">
+				<legend>Samples</legend>
+				<div id="samplesList" class="templates-list">
+					<!-- Default templates will be dynamically added here -->
+				</div>
+			</fieldset>
+			<fieldset class="fieldset" style="margin-top: 12px;">
+				<legend>My Templates</legend>
+				<div id="templatesList" class="templates-list">
+					<!-- User templates will be dynamically added here -->
+				</div>
+			</fieldset>
+		</section>
+	</main>
+
+	<footer class="app-footer">
+		<div style="display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap;">
+			<span>created by Arijkx | Pixels</span>
+			<div style="display: flex; gap: 12px; align-items: center;">
+				<a href="https://x.com/arijkx_" target="_blank" rel="noopener noreferrer" class="footer-link" title="Twitter">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+					</svg>
+				</a>
+				<a href="https://www.instagram.com/arijkx_/" target="_blank" rel="noopener noreferrer" class="footer-link" title="Instagram">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+					</svg>
+				</a>
+				<a href="https://github.com/Arijkx" target="_blank" rel="noopener noreferrer" class="footer-link" title="GitHub">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+					</svg>
+				</a>
+				<a href="https://arijkx.github.io/arijkxpixels/" target="_blank" rel="noopener noreferrer" class="footer-link" title="Website">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<circle cx="12" cy="12" r="10"></circle>
+						<line x1="2" y1="12" x2="22" y2="12"></line>
+						<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Save Template Modal -->
+	<div id="saveTemplateModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Save Template</h3>
+				<button class="modal-close" id="closeSaveModal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<label for="templateNameInput">Template Name:</label>
+				<input type="text" id="templateNameInput" placeholder="Enter template name" maxlength="50">
+				<div id="templateNameError" class="modal-error" style="display: none;">Please enter a template name.</div>
+			</div>
+			<div class="modal-footer">
+				<button id="cancelSaveBtn" class="btn">Cancel</button>
+				<button id="confirmSaveBtn" class="btn primary">Save</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Delete Template Modal -->
+	<div id="deleteTemplateModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Delete Template</h3>
+				<button class="modal-close" id="closeDeleteModal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p id="deleteModalMessage">Do you really want to delete this template?</p>
+			</div>
+			<div class="modal-footer">
+				<button id="cancelDeleteBtn" class="btn">Cancel</button>
+				<button id="confirmDeleteBtn" class="btn delete">Delete</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Reset Modal -->
+	<div id="resetModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Reset</h3>
+				<button class="modal-close" id="closeResetModal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Do you want to reset all inputs? All current values will be lost.</p>
+			</div>
+			<div class="modal-footer">
+				<button id="cancelResetBtn" class="btn">Cancel</button>
+				<button id="confirmResetBtn" class="btn delete">Reset</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Backup Templates Modal -->
+	<div id="backupTemplateModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Template Backup</h3>
+				<button class="modal-close" id="closeBackupModal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p style="margin-bottom: 16px;">Download all templates or upload a backup file.</p>
+				<div style="display: flex; flex-direction: column; gap: 12px;">
+					<button id="downloadBackupBtn" class="btn primary" style="width: 100%;">Download Templates</button>
+					<button id="uploadBackupBtn" class="btn" style="width: 100%;">Upload Backup</button>
+					<input id="uploadBackupInput" type="file" accept="application/json" hidden>
+				</div>
+				<div id="backupMessage" style="margin-top: 12px; font-size: 12px; color: var(--muted); display: none;"></div>
+			</div>
+			<div class="modal-footer">
+				<button id="closeBackupBtn" class="btn">Close</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Overwrite Template Modal -->
+	<div id="overwriteTemplateModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Overwrite Template</h3>
+				<button class="modal-close" id="closeOverwriteModal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p id="overwriteModalMessage">Do you really want to overwrite this template?</p>
+			</div>
+			<div class="modal-footer">
+				<button id="cancelOverwriteBtn" class="btn">Cancel</button>
+				<button id="confirmOverwriteBtn" class="btn delete">Overwrite</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="export-helper.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
+

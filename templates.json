@@ -1,0 +1,461 @@
+{
+  "version": "1.0",
+  "exportedAt": "2025-11-25T17:04:32.171Z",
+  "templates": [
+    {
+      "id": "1764089211341",
+      "name": "Relic",
+      "data": {
+        "name": "",
+        "cardNameColor": "#fec190",
+        "type": "",
+        "typeVisible": true,
+        "typeTextColor": "#fec190",
+        "typeBorderColor": "#a27857",
+        "hp": "100",
+        "hpVisible": true,
+        "hpLabelColor": "#fec190",
+        "hpValueColor": "#fee8d7",
+        "coverDataUrl": "",
+        "attackMode": "attacks",
+        "attacks": [
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          },
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          }
+        ],
+        "description": {
+          "title": "",
+          "text": "",
+          "titleColor": "#c9d1d9",
+          "textColor": "#8b949e"
+        },
+        "footerNote": "",
+        "rarity": "Relic",
+        "cardNumber": "#0000000000",
+        "borderColor": "#fec190",
+        "lineColor": "#fec190",
+        "innerColor": "#452e1c",
+        "imageBgColor": "#0b0f14",
+        "rarityTextColor": "#fec190",
+        "rarityBorderColor": "#a27857",
+        "cardNumberTextColor": "#ffffff",
+        "cardNumberBorderColor": "#a27857",
+        "footerTextColor": "#fec190",
+        "atkNameColor": "#ffffff",
+        "atkDmgColor": "",
+        "atkDescColor": "#bbbfc3"
+      },
+      "createdAt": "2025-11-25T16:46:51.341Z",
+      "updatedAt": "2025-11-25T16:58:58.393Z"
+    },
+    {
+      "id": "1764089205854",
+      "name": "Ancient",
+      "data": {
+        "name": "",
+        "cardNameColor": "#8afffd",
+        "type": "",
+        "typeVisible": true,
+        "typeTextColor": "#8afffd",
+        "typeBorderColor": "#187c7b",
+        "hp": "100",
+        "hpVisible": true,
+        "hpLabelColor": "#8afffd",
+        "hpValueColor": "#c3fefd",
+        "coverDataUrl": "",
+        "attackMode": "attacks",
+        "attacks": [
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          },
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          }
+        ],
+        "description": {
+          "title": "",
+          "text": "",
+          "titleColor": "#c9d1d9",
+          "textColor": "#8b949e"
+        },
+        "footerNote": "",
+        "rarity": "Ancient",
+        "cardNumber": "#0000000000",
+        "borderColor": "#8afffd",
+        "lineColor": "#8afffd",
+        "innerColor": "#002423",
+        "imageBgColor": "#0b0f14",
+        "rarityTextColor": "#8afffd",
+        "rarityBorderColor": "#187c7b",
+        "cardNumberTextColor": "#c9d1d9",
+        "cardNumberBorderColor": "#187c7b",
+        "footerTextColor": "#8afffd",
+        "atkNameColor": "#c9d1d9",
+        "atkDmgColor": "",
+        "atkDescColor": "#8b949e"
+      },
+      "createdAt": "2025-11-25T16:46:45.854Z",
+      "updatedAt": "2025-11-25T16:56:48.606Z"
+    },
+    {
+      "id": "1764089199661",
+      "name": "Mythic",
+      "data": {
+        "name": "",
+        "cardNameColor": "#ff7a7a",
+        "type": "",
+        "typeVisible": true,
+        "typeTextColor": "#ff0000",
+        "typeBorderColor": "#731212",
+        "hp": "100",
+        "hpVisible": true,
+        "hpLabelColor": "#ff0000",
+        "hpValueColor": "#ffa8a8",
+        "coverDataUrl": "",
+        "attackMode": "attacks",
+        "attacks": [
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          },
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          }
+        ],
+        "description": {
+          "title": "",
+          "text": "",
+          "titleColor": "#c9d1d9",
+          "textColor": "#8b949e"
+        },
+        "footerNote": "",
+        "rarity": "Mythic",
+        "cardNumber": "#0000000000",
+        "borderColor": "#ff0000",
+        "lineColor": "#ff0000",
+        "innerColor": "#260303",
+        "imageBgColor": "#0b0f14",
+        "rarityTextColor": "#ff0000",
+        "rarityBorderColor": "#731212",
+        "cardNumberTextColor": "#c9d1d9",
+        "cardNumberBorderColor": "#731212",
+        "footerTextColor": "#ff0000",
+        "atkNameColor": "#c9d1d9",
+        "atkDmgColor": "",
+        "atkDescColor": "#8b949e"
+      },
+      "createdAt": "2025-11-25T16:46:39.661Z",
+      "updatedAt": "2025-11-25T16:55:20.542Z"
+    },
+    {
+      "id": "1764089191471",
+      "name": "Legendary",
+      "data": {
+        "name": "",
+        "cardNameColor": "#f1c31e",
+        "type": "",
+        "typeVisible": true,
+        "typeTextColor": "#f1c31e",
+        "typeBorderColor": "#b08f17",
+        "hp": "100",
+        "hpVisible": true,
+        "hpLabelColor": "#f1c31e",
+        "hpValueColor": "#fef7dc",
+        "coverDataUrl": "",
+        "attackMode": "attacks",
+        "attacks": [
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          },
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          }
+        ],
+        "description": {
+          "title": "",
+          "text": "",
+          "titleColor": "#c9d1d9",
+          "textColor": "#8b949e"
+        },
+        "footerNote": "",
+        "rarity": "Legendary",
+        "cardNumber": "#0000000000",
+        "borderColor": "#f1c31e",
+        "lineColor": "#f1c31e",
+        "innerColor": "#59490d",
+        "imageBgColor": "#0b0f14",
+        "rarityTextColor": "#f1c31e",
+        "rarityBorderColor": "#b08f17",
+        "cardNumberTextColor": "#ffffff",
+        "cardNumberBorderColor": "#b08f17",
+        "footerTextColor": "#f1c31e",
+        "atkNameColor": "#ffffff",
+        "atkDmgColor": "",
+        "atkDescColor": "#c2c9d1"
+      },
+      "createdAt": "2025-11-25T16:46:31.471Z",
+      "updatedAt": "2025-11-25T16:53:40.863Z"
+    },
+    {
+      "id": "1764089185359",
+      "name": "Epic",
+      "data": {
+        "name": "",
+        "cardNameColor": "#ad74c8",
+        "type": "",
+        "typeVisible": true,
+        "typeTextColor": "#ad74c8",
+        "typeBorderColor": "#6b457d",
+        "hp": "100",
+        "hpVisible": true,
+        "hpLabelColor": "#ad74c8",
+        "hpValueColor": "#eabdff",
+        "coverDataUrl": "",
+        "attackMode": "attacks",
+        "attacks": [
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          },
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          }
+        ],
+        "description": {
+          "title": "",
+          "text": "",
+          "titleColor": "#c9d1d9",
+          "textColor": "#8b949e"
+        },
+        "footerNote": "",
+        "rarity": "Epic",
+        "cardNumber": "#0000000000",
+        "borderColor": "#ad74c8",
+        "lineColor": "#ad74c8",
+        "innerColor": "#321744",
+        "imageBgColor": "#0b0f14",
+        "rarityTextColor": "#ad74c8",
+        "rarityBorderColor": "#6b457d",
+        "cardNumberTextColor": "#c9d1d9",
+        "cardNumberBorderColor": "#6b457d",
+        "footerTextColor": "#8b949e",
+        "atkNameColor": "#c9d1d9",
+        "atkDmgColor": "",
+        "atkDescColor": "#8b949e"
+      },
+      "createdAt": "2025-11-25T16:46:25.359Z",
+      "updatedAt": "2025-11-25T16:51:47.889Z"
+    },
+    {
+      "id": "1764089178446",
+      "name": "Rare",
+      "data": {
+        "name": "",
+        "cardNameColor": "#9e7cfe",
+        "type": "",
+        "typeVisible": true,
+        "typeTextColor": "#9e7cfe",
+        "typeBorderColor": "#571aff",
+        "hp": "100",
+        "hpVisible": true,
+        "hpLabelColor": "#9e7cfe",
+        "hpValueColor": "#c7b4fe",
+        "coverDataUrl": "",
+        "attackMode": "attacks",
+        "attacks": [
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          },
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          }
+        ],
+        "description": {
+          "title": "",
+          "text": "",
+          "titleColor": "#c9d1d9",
+          "textColor": "#8b949e"
+        },
+        "footerNote": "",
+        "rarity": "Rare",
+        "cardNumber": "#0000000000",
+        "borderColor": "#571aff",
+        "lineColor": "#571aff",
+        "innerColor": "#21007a",
+        "imageBgColor": "#0b0f14",
+        "rarityTextColor": "#9e7cfe",
+        "rarityBorderColor": "#571aff",
+        "cardNumberTextColor": "#c9d1d9",
+        "cardNumberBorderColor": "#571aff",
+        "footerTextColor": "#9e7cfe",
+        "atkNameColor": "#c9d1d9",
+        "atkDmgColor": "",
+        "atkDescColor": "#8b949e"
+      },
+      "createdAt": "2025-11-25T16:46:18.446Z",
+      "updatedAt": "2025-11-25T16:50:10.795Z"
+    },
+    {
+      "id": "1764089171853",
+      "name": "Uncommon",
+      "data": {
+        "name": "",
+        "cardNameColor": "#a6f2ab",
+        "type": "",
+        "typeVisible": true,
+        "typeTextColor": "#a6f2ab",
+        "typeBorderColor": "#57945b",
+        "hp": "100",
+        "hpVisible": true,
+        "hpLabelColor": "#a6f2ab",
+        "hpValueColor": "#6df376",
+        "coverDataUrl": "",
+        "attackMode": "attacks",
+        "attacks": [
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          },
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          }
+        ],
+        "description": {
+          "title": "",
+          "text": "",
+          "titleColor": "#c9d1d9",
+          "textColor": "#8b949e"
+        },
+        "footerNote": "",
+        "rarity": "Uncommon",
+        "cardNumber": "#0000000000",
+        "borderColor": "#57945b",
+        "lineColor": "#57945b",
+        "innerColor": "#2f5031",
+        "imageBgColor": "#0b0f14",
+        "rarityTextColor": "#a6f2ab",
+        "rarityBorderColor": "#57945b",
+        "cardNumberTextColor": "#ffffff",
+        "cardNumberBorderColor": "#57945b",
+        "footerTextColor": "#a6f2ab",
+        "atkNameColor": "#c9d1d9",
+        "atkDmgColor": "",
+        "atkDescColor": "#8b949e"
+      },
+      "createdAt": "2025-11-25T16:46:11.853Z",
+      "updatedAt": "2025-11-25T16:48:52.574Z"
+    },
+    {
+      "id": "1764089117021",
+      "name": "Common",
+      "data": {
+        "name": "",
+        "cardNameColor": "#c9d1d9",
+        "type": "",
+        "typeVisible": true,
+        "typeTextColor": "#8b949e",
+        "typeBorderColor": "#30363d",
+        "hp": "100",
+        "hpVisible": true,
+        "hpLabelColor": "#8b949e",
+        "hpValueColor": "#58a6ff",
+        "coverDataUrl": "",
+        "attackMode": "attacks",
+        "attacks": [
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          },
+          {
+            "name": "",
+            "damage": "",
+            "description": "",
+            "damageVisible": true,
+            "damageColor": "#f85149"
+          }
+        ],
+        "description": {
+          "title": "",
+          "text": "",
+          "titleColor": "#c9d1d9",
+          "textColor": "#8b949e"
+        },
+        "footerNote": "",
+        "rarity": "Common",
+        "cardNumber": "#0000000000",
+        "borderColor": "#30363d",
+        "lineColor": "#30363d",
+        "innerColor": "#000000",
+        "imageBgColor": "#0b0f14",
+        "rarityTextColor": "#c9d1d9",
+        "rarityBorderColor": "#30363d",
+        "cardNumberTextColor": "#c9d1d9",
+        "cardNumberBorderColor": "#30363d",
+        "footerTextColor": "#8b949e",
+        "atkNameColor": "#c9d1d9",
+        "atkDmgColor": "",
+        "atkDescColor": "#8b949e"
+      },
+      "createdAt": "2025-11-25T16:45:17.021Z"
+    }
+  ]
+}
