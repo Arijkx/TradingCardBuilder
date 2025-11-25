@@ -16,65 +16,72 @@
 				<button id="resetBtn" class="btn">RESET</button>
 			</div>
 			<form id="cardForm" autocomplete="off">
-				<div class="field">
-					<label for="cardName">Card Name</label>
-					<div class="color-picker-group">
-						<input id="cardName" type="text" placeholder="e.g. Octocat" maxlength="24">
-						<input id="cardNameColor" type="color" value="#c9d1d9" class="color-preview" title="Text Color">
-						<input id="cardNameColorHex" type="text" placeholder="#c9d1d9" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
-					</div>
-				</div>
-
-				<div class="field">
-					<label for="cardTypeText">Type</label>
-					<div class="grid-2">
-						<div style="display: flex; align-items: center; gap: 8px;">
-							<input id="cardTypeText" type="text" maxlength="16" placeholder="e.g. Electric" style="flex: 1;">
-							<label style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;">
-								<input type="checkbox" id="typeVisible" checked style="cursor: pointer;">
-							</label>
-						</div>
-						<div class="rarity-color-controls">
-							<div style="display: flex; align-items: center; gap: 8px;">
-								<input id="typeTextColor" type="color" value="#8b949e" class="color-preview" title="Text Color">
-								<input id="typeTextColorHex" type="text" placeholder="#8b949e" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
-							</div>
-							<div style="display: flex; align-items: center; gap: 8px;">
-								<input id="typeBorderColor" type="color" value="#30363d" class="color-preview" title="Border Color">
-								<input id="typeBorderColorHex" type="text" placeholder="#30363d" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
-							</div>
+				<fieldset class="fieldset">
+					<legend>Top</legend>
+					<div class="field">
+						<label for="cardName">Card Name</label>
+						<div class="color-picker-group">
+							<input id="cardName" type="text" placeholder="e.g. Octocat" maxlength="24">
+							<input id="cardNameColor" type="color" value="#c9d1d9" class="color-preview" title="Text Color">
+							<input id="cardNameColorHex" type="text" placeholder="#c9d1d9" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
 						</div>
 					</div>
-				</div>
 
-				<div class="field">
-					<label for="cardHp">HP</label>
-					<div class="grid-2">
-						<div style="display: flex; align-items: center; gap: 8px;">
-							<input id="cardHp" type="number" min="10" max="300" value="100" style="flex: 1;">
-							<label style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;">
-								<input type="checkbox" id="hpVisible" checked style="cursor: pointer;">
-							</label>
-						</div>
-						<div class="rarity-color-controls">
-							<div style="display: flex; align-items: center; gap: 8px;">
-								<input id="hpLabelColor" type="color" value="#8b949e" class="color-preview" title="HP Label Color">
-								<input id="hpLabelColorHex" type="text" placeholder="#8b949e" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+					<div class="field">
+						<label for="cardTypeText">Type</label>
+						<div class="grid-2">
+							<div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0;">
+								<input id="cardTypeText" type="text" maxlength="16" placeholder="e.g. Electric" style="width: 100%; box-sizing: border-box;">
+								<label style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;">
+									<input type="checkbox" id="typeVisible" checked style="cursor: pointer;">
+								</label>
 							</div>
-							<div style="display: flex; align-items: center; gap: 8px;">
-								<input id="hpValueColor" type="color" value="#58a6ff" class="color-preview" title="HP Value Color">
-								<input id="hpValueColorHex" type="text" placeholder="#58a6ff" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+							<div class="rarity-color-controls">
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<input id="typeTextColor" type="color" value="#8b949e" class="color-preview" title="Text Color">
+									<input id="typeTextColorHex" type="text" placeholder="#8b949e" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+								</div>
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<input id="typeBorderColor" type="color" value="#30363d" class="color-preview" title="Border Color">
+									<input id="typeBorderColorHex" type="text" placeholder="#30363d" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+
+					<div class="field">
+						<label for="cardHp">HP</label>
+						<div class="grid-2">
+							<div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0;">
+								<input id="cardHp" type="number" min="10" max="300" value="100" style="width: 100%; box-sizing: border-box;">
+								<label style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;">
+									<input type="checkbox" id="hpVisible" checked style="cursor: pointer;">
+								</label>
+							</div>
+							<div class="rarity-color-controls">
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<input id="hpLabelColor" type="color" value="#8b949e" class="color-preview" title="HP Label Color">
+									<input id="hpLabelColorHex" type="text" placeholder="#8b949e" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+								</div>
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<input id="hpValueColor" type="color" value="#58a6ff" class="color-preview" title="HP Value Color">
+									<input id="hpValueColorHex" type="text" placeholder="#58a6ff" maxlength="7" pattern="#[0-9A-Fa-f]{6}">
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
 
 
 
-				<div class="field">
-					<button id="uploadCoverBtn" class="btn">Upload Card Image (404x303px)</button>
+				<fieldset class="fieldset">
+					<legend>Card Image</legend>
+					<div style="display: flex; gap: 8px;">
+						<button id="uploadCoverBtn" class="btn" style="flex: 1;">Upload</button>
+						<button id="deleteImageBtn" class="btn" style="flex: 1;">Delete</button>
+					</div>
 					<input id="coverInput" type="file" accept="image/*" hidden>
-				</div>
+				</fieldset>
 
 				<fieldset class="fieldset">
 					<legend>Attacks & Description</legend>
@@ -466,6 +473,53 @@
 			<div class="modal-footer">
 				<button id="cancelOverwriteBtn" class="btn">Cancel</button>
 				<button id="confirmOverwriteBtn" class="btn delete">Overwrite</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Image Editor Modal -->
+	<div id="imageEditorModal" class="modal">
+		<div class="modal-content image-editor-modal">
+			<div class="modal-header">
+				<h3>Edit Image</h3>
+				<button class="modal-close" id="closeImageEditorModal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="image-editor-container">
+					<div class="image-editor-preview" id="imageEditorPreview">
+						<img id="imageEditorImage" alt="Preview" />
+					</div>
+					<div class="image-editor-controls">
+						<div class="image-editor-control-group">
+							<label for="imageScaleSlider">Size:</label>
+							<button id="decreaseScaleBtn" class="btn" style="flex: 0 0 auto; min-width: 40px; padding: 4px 8px;">-</button>
+							<input type="range" id="imageScaleSlider" min="5" max="1000" value="100" step="1">
+							<button id="increaseScaleBtn" class="btn" style="flex: 0 0 auto; min-width: 40px; padding: 4px 8px;">+</button>
+							<span id="imageScaleValue">100%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="cancelImageEditorBtn" class="btn">Cancel</button>
+				<button id="applyImageEditorBtn" class="btn primary">Apply</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Delete Image Modal -->
+	<div id="deleteImageModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Delete Image</h3>
+				<button class="modal-close" id="closeDeleteImageModal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Do you really want to delete the current image and reset to default?</p>
+			</div>
+			<div class="modal-footer">
+				<button id="cancelDeleteImageBtn" class="btn">Cancel</button>
+				<button id="confirmDeleteImageBtn" class="btn delete">Delete</button>
 			</div>
 		</div>
 	</div>

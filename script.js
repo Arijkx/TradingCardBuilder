@@ -1545,7 +1545,380 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 // Initialize attack colors (only if not loaded from state - handled in loadState/initializeDefaults)
 
-// Cover image upload
+// Image Editor functionality
+// Get actual card-hero dimensions
+const cardHero = card?.querySelector('.card-hero');
+const getCardHeroDimensions = () => {
+	if (cardHero) {
+		const rect = cardHero.getBoundingClientRect();
+		return { width: rect.width, height: rect.height };
+	}
+	return { width: 404, height: 303 }; // Fallback to button dimensions
+};
+
+let imageEditorState = {
+	image: null,
+	scale: 100,
+	x: 0,
+	y: 0,
+	previewWidth: 404,
+	previewHeight: 303
+};
+
+const imageEditorModal = el('imageEditorModal');
+const imageEditorPreview = el('imageEditorPreview');
+const imageEditorImage = el('imageEditorImage');
+const imageScaleSlider = el('imageScaleSlider');
+const imageScaleValue = el('imageScaleValue');
+const resetImagePositionBtn = el('resetImagePositionBtn');
+const applyImageEditorBtn = el('applyImageEditorBtn');
+const cancelImageEditorBtn = el('cancelImageEditorBtn');
+const closeImageEditorModal = el('closeImageEditorModal');
+
+function updateImageEditorDisplay() {
+	if (!imageEditorImage.src) return;
+	
+	const scale = imageEditorState.scale / 100;
+	const img = new Image();
+	img.onload = () => {
+		const displayWidth = img.width * scale;
+		const displayHeight = img.height * scale;
+		
+		imageEditorImage.style.width = `${displayWidth}px`;
+		imageEditorImage.style.height = `${displayHeight}px`;
+		imageEditorImage.style.left = `${imageEditorState.x}px`;
+		imageEditorImage.style.top = `${imageEditorState.y}px`;
+	};
+	if (imageEditorImage.complete && imageEditorImage.naturalWidth > 0) {
+		const displayWidth = imageEditorImage.naturalWidth * (imageEditorState.scale / 100);
+		const displayHeight = imageEditorImage.naturalHeight * (imageEditorState.scale / 100);
+		
+		imageEditorImage.style.width = `${displayWidth}px`;
+		imageEditorImage.style.height = `${displayHeight}px`;
+		imageEditorImage.style.left = `${imageEditorState.x}px`;
+		imageEditorImage.style.top = `${imageEditorState.y}px`;
+	} else {
+		img.src = imageEditorImage.src;
+	}
+}
+
+function resetImageEditorPosition() {
+	if (!imageEditorImage.src) return;
+	
+	const img = new Image();
+	img.onload = () => {
+		const scale = imageEditorState.scale / 100;
+		const displayWidth = img.width * scale;
+		const displayHeight = img.height * scale;
+		
+		// Center the image
+		imageEditorState.x = (imageEditorState.previewWidth - displayWidth) / 2;
+		imageEditorState.y = (imageEditorState.previewHeight - displayHeight) / 2;
+		
+		updateImageEditorDisplay();
+	};
+	img.src = imageEditorImage.src;
+}
+
+// Drag functionality
+let isDragging = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let dragStartImageX = 0;
+let dragStartImageY = 0;
+
+imageEditorPreview.addEventListener('mousedown', (e) => {
+	if (imageEditorImage.src) {
+		isDragging = true;
+		imageEditorPreview.classList.add('dragging');
+		dragStartX = e.clientX;
+		dragStartY = e.clientY;
+		dragStartImageX = imageEditorState.x;
+		dragStartImageY = imageEditorState.y;
+		e.preventDefault();
+	}
+});
+
+document.addEventListener('mousemove', (e) => {
+	if (!isDragging) return;
+	
+	const deltaX = e.clientX - dragStartX;
+	const deltaY = e.clientY - dragStartY;
+	
+	imageEditorState.x = dragStartImageX + deltaX;
+	imageEditorState.y = dragStartImageY + deltaY;
+	
+	updateImageEditorDisplay();
+});
+
+document.addEventListener('mouseup', () => {
+	if (isDragging) {
+		isDragging = false;
+		imageEditorPreview.classList.remove('dragging');
+	}
+});
+
+// Function to update scale
+function updateImageScale(newScale) {
+	const oldScale = imageEditorState.scale;
+	imageEditorState.scale = Math.max(5, Math.min(1000, newScale));
+	
+	if (imageScaleSlider) {
+		imageScaleSlider.value = imageEditorState.scale;
+	}
+	if (imageScaleValue) {
+		imageScaleValue.textContent = `${imageEditorState.scale}%`;
+	}
+	
+	// Adjust position to keep image centered relative to its previous center
+	if (imageEditorImage.src && imageEditorImage.complete && imageEditorImage.naturalWidth > 0) {
+		const img = imageEditorImage;
+		const oldWidth = img.naturalWidth * oldScale / 100;
+		const oldHeight = img.naturalHeight * oldScale / 100;
+		const currentCenterX = imageEditorState.x + oldWidth / 2;
+		const currentCenterY = imageEditorState.y + oldHeight / 2;
+		
+		const newWidth = img.naturalWidth * imageEditorState.scale / 100;
+		const newHeight = img.naturalHeight * imageEditorState.scale / 100;
+		
+		imageEditorState.x = currentCenterX - newWidth / 2;
+		imageEditorState.y = currentCenterY - newHeight / 2;
+	}
+	
+	updateImageEditorDisplay();
+}
+
+// Scale slider
+if (imageScaleSlider) {
+	imageScaleSlider.addEventListener('input', (e) => {
+		updateImageScale(parseInt(e.target.value));
+	});
+}
+
+// Plus/Minus buttons for scale
+const decreaseScaleBtn = el('decreaseScaleBtn');
+const increaseScaleBtn = el('increaseScaleBtn');
+
+if (decreaseScaleBtn) {
+	decreaseScaleBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		updateImageScale(imageEditorState.scale - 1);
+	});
+}
+
+if (increaseScaleBtn) {
+	increaseScaleBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		updateImageScale(imageEditorState.scale + 1);
+	});
+}
+
+
+// Apply edited image
+function applyEditedImage() {
+	if (!imageEditorImage.src) return;
+	
+	const canvas = document.createElement('canvas');
+	const ctx = canvas.getContext('2d');
+	
+	// Use higher resolution (3x) for better quality
+	const scaleFactor = 3;
+	canvas.width = imageEditorState.previewWidth * scaleFactor;
+	canvas.height = imageEditorState.previewHeight * scaleFactor;
+	
+	// Scale context for high DPI
+	ctx.scale(scaleFactor, scaleFactor);
+	
+	// Fill background
+	ctx.fillStyle = '#0b0f14';
+	ctx.fillRect(0, 0, imageEditorState.previewWidth, imageEditorState.previewHeight);
+	
+	// Load and draw image
+	const img = new Image();
+	img.onload = () => {
+		const scale = imageEditorState.scale / 100;
+		const displayWidth = img.width * scale;
+		const displayHeight = img.height * scale;
+		
+		// Use the current x/y position directly (scaled to preview dimensions)
+		let x = imageEditorState.x;
+		let y = imageEditorState.y;
+		
+		// If image hasn't been moved, center it
+		if (x === 0 && y === 0) {
+			x = (imageEditorState.previewWidth - displayWidth) / 2;
+			y = (imageEditorState.previewHeight - displayHeight) / 2;
+		}
+		
+		// Use image smoothing for better quality
+		ctx.imageSmoothingEnabled = true;
+		ctx.imageSmoothingQuality = 'high';
+		
+		ctx.drawImage(img, x, y, displayWidth, displayHeight);
+		
+		// Convert to data URL with high quality
+		const dataUrl = canvas.toDataURL('image/png');
+		views.cover.src = dataUrl;
+		saveState();
+		
+		// Close modal
+		imageEditorModal.classList.remove('active');
+	};
+	img.src = imageEditorImage.src;
+}
+
+if (applyImageEditorBtn) {
+	applyImageEditorBtn.addEventListener('click', applyEditedImage);
+}
+
+// Cancel/Close handlers
+function closeImageEditor() {
+	imageEditorModal.classList.remove('active');
+	imageEditorImage.src = '';
+	const dimensions = getCardHeroDimensions();
+	imageEditorState = {
+		image: null,
+		scale: 100,
+		x: 0,
+		y: 0,
+		previewWidth: dimensions.width,
+		previewHeight: dimensions.height
+	};
+	if (imageScaleSlider) {
+		imageScaleSlider.value = 100;
+		imageScaleSlider.min = 5;
+		imageScaleSlider.max = 1000;
+	}
+	if (imageScaleValue) imageScaleValue.textContent = '100%';
+}
+
+// Function to open image editor with an image
+function openImageEditor(imageUrl, resetState = true) {
+	if (!imageUrl) return;
+	
+	imageEditorImage.src = imageUrl;
+	
+	// Update preview dimensions to match actual card-hero
+	const dimensions = getCardHeroDimensions();
+	imageEditorState.previewWidth = dimensions.width;
+	imageEditorState.previewHeight = dimensions.height;
+	imageEditorPreview.style.width = `${dimensions.width}px`;
+	imageEditorPreview.style.height = `${dimensions.height}px`;
+	
+	if (resetState) {
+		// Reset editor state
+		imageEditorState.scale = 100;
+		imageEditorState.x = 0;
+		imageEditorState.y = 0;
+		if (imageScaleSlider) imageScaleSlider.value = 100;
+		if (imageScaleValue) imageScaleValue.textContent = '100%';
+	}
+	
+	// Wait for image to load, then center it
+	const img = new Image();
+	img.onload = () => {
+		if (resetState) {
+			// Always use 100% scale
+			imageEditorState.scale = 100;
+			
+			if (imageScaleSlider) {
+				imageScaleSlider.value = 100;
+			}
+			if (imageScaleValue) {
+				imageScaleValue.textContent = '100%';
+			}
+			
+			// Center image initially
+			const scale = imageEditorState.scale / 100;
+			const displayWidth = img.width * scale;
+			const displayHeight = img.height * scale;
+			imageEditorState.x = (imageEditorState.previewWidth - displayWidth) / 2;
+			imageEditorState.y = (imageEditorState.previewHeight - displayHeight) / 2;
+		}
+		
+		updateImageEditorDisplay();
+	};
+	img.src = imageUrl;
+	
+	// Open modal
+	imageEditorModal.classList.add('active');
+}
+
+// Close modal when clicking on backdrop
+imageEditorModal.addEventListener('click', (e) => {
+	if (e.target === imageEditorModal) {
+		closeImageEditor();
+	}
+});
+
+if (cancelImageEditorBtn) {
+	cancelImageEditorBtn.addEventListener('click', closeImageEditor);
+}
+
+if (closeImageEditorModal) {
+	closeImageEditorModal.addEventListener('click', closeImageEditor);
+}
+
+// Delete Image Modal
+const deleteImageModal = el('deleteImageModal');
+const closeDeleteImageModalBtn = el('closeDeleteImageModal');
+const cancelDeleteImageBtn = el('cancelDeleteImageBtn');
+const confirmDeleteImageBtn = el('confirmDeleteImageBtn');
+
+function openDeleteImageModal() {
+	if (deleteImageModal) {
+		deleteImageModal.classList.add('active');
+	}
+}
+
+function closeDeleteImageModal() {
+	if (deleteImageModal) {
+		deleteImageModal.classList.remove('active');
+	}
+}
+
+function confirmDeleteImage() {
+	// Reset to default image
+	views.cover.src = 'sample.png';
+	// Clear file input
+	if (inputs.cover) {
+		inputs.cover.value = '';
+	}
+	saveState();
+	closeDeleteImageModal();
+}
+
+// Delete button - opens delete modal
+const deleteImageBtn = el('deleteImageBtn');
+if (deleteImageBtn) {
+	deleteImageBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		openDeleteImageModal();
+	});
+}
+
+if (closeDeleteImageModalBtn) {
+	closeDeleteImageModalBtn.addEventListener('click', closeDeleteImageModal);
+}
+
+if (cancelDeleteImageBtn) {
+	cancelDeleteImageBtn.addEventListener('click', closeDeleteImageModal);
+}
+
+if (confirmDeleteImageBtn) {
+	confirmDeleteImageBtn.addEventListener('click', confirmDeleteImage);
+}
+
+// Close modal when clicking on backdrop
+if (deleteImageModal) {
+	deleteImageModal.addEventListener('click', (e) => {
+		if (e.target === deleteImageModal) {
+			closeDeleteImageModal();
+		}
+	});
+}
+
+// Cover image upload - opens editor
 const uploadBtn = document.getElementById('uploadCoverBtn');
 if (uploadBtn) uploadBtn.addEventListener('click', (e) => { e.preventDefault(); inputs.cover?.click(); });
 inputs.cover.addEventListener('change', () => {
@@ -1553,8 +1926,8 @@ inputs.cover.addEventListener('change', () => {
 	if (!file) return;
 	const reader = new FileReader();
 	reader.onload = (e) => {
-		views.cover.src = String(e.target?.result || '');
-        saveState();
+		const imageUrl = String(e.target?.result || '');
+		openImageEditor(imageUrl, true);
 	};
 	reader.readAsDataURL(file);
 });
