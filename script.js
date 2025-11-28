@@ -1729,9 +1729,8 @@ function applyEditedImage() {
 	// Scale context for high DPI
 	ctx.scale(scaleFactor, scaleFactor);
 	
-	// Fill background
-	ctx.fillStyle = '#0b0f14';
-	ctx.fillRect(0, 0, imageEditorState.previewWidth, imageEditorState.previewHeight);
+	// Don't fill background - preserve transparency so CSS background color can show through
+	// The background color is handled by the .card-hero CSS background
 	
 	// Load and draw image
 	const img = new Image();
