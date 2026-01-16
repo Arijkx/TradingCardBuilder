@@ -1,0 +1,37 @@
+{
+  "name": "Chooper e4",
+  "cardNameColor": "#ffecb8",
+  "type": "Drone",
+  "typeTextColor": "#ffecb8",
+  "typeBorderColor": "#ffbb00",
+  "hp": 150,
+  "hpLabelColor": "#8b949e",
+  "hpValueColor": "#ffecb8",
+  "coverDataUrl": "data:image/png;base64,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",
+  "attacks": [
+    {
+      "name": "Gravity Manipulation",
+      "damage": 50,
+      "description": "A standard laser weapon capable of dealing consistent damage over long distances. Black Hole: +50 Damage, immobilizes all enemies for 1 turn."
+    },
+    {
+      "name": "Energie Shield",
+      "damage": 0,
+      "description": "Deploys a mini drone that generates a temporary energy shield around an ally or yourself. +40 Shield for 1 turn. 50% of incoming damage is reflected back to the attacker"
+    }
+  ],
+  "footerNote": "C. Journey | First Edition • 2025",
+  "rarity": "♠ Legendary",
+  "cardNumber": "#0000000016",
+  "borderColor": "#ffecb8",
+  "innerColor": "#252013",
+  "rarityTextColor": "#ffecb8",
+  "rarityBorderColor": "#ffbb00",
+  "cardNumberTextColor": "#ffecb8",
+  "cardNumberBorderColor": "#ffbb00",
+  "footerTextColor": "#ffecb8",
+  "atkNameColor": "#ffecb8",
+  "atkDmgColor": "#ff5757",
+  "atkDescColor": "#c0ae7c",
+  "exportedAt": "2025-10-31T18:53:58.352Z"
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ATLANTOS CARDS</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="card.css">
+</head>
+<body>
+	<header class="app-header">
+		<div class="header-content">
+			<div class="brand">ATLANTOS CARDS</div>
+			<div class="actions">
+			</div>
+		</div>
+	</header>
+
+	<main class="library-main">
+		<section class="filters">
+			<h2>Filter & Suche</h2>
+			<div class="filter-controls">
+				<div class="field">
+					<label for="searchInput">Suche</label>
+					<input id="searchInput" type="text" placeholder="Kartenname, Typ, Rarität...">
+				</div>
+				<div class="field">
+					<label for="typeFilter">Typ</label>
+					<select id="typeFilter">
+						<option value="">Alle Typen</option>
+					</select>
+				</div>
+				<div class="field">
+					<label for="rarityFilter">Rarität</label>
+					<select id="rarityFilter">
+						<option value="">Alle Raritäten</option>
+					</select>
+				</div>
+				<div class="field">
+					<label for="sortSelect">Sortierung</label>
+					<select id="sortSelect">
+						<option value="number">Kartennummer</option>
+						<option value="name">Name (A-Z)</option>
+						<option value="hp">HP (hoch-niedrig)</option>
+						<option value="type">Typ</option>
+						<option value="rarity">Rarität</option>
+					</select>
+				</div>
+			</div>
+			<div class="stats">
+				<span id="cardCount">0 Karten</span>
+			</div>
+		</section>
+
+		<section class="cards-grid" id="cardsGrid">
+			<!-- Cards will be rendered here -->
+		</section>
+
+		<section class="card-detail-modal" id="cardModal" hidden>
+			<div class="modal-overlay"></div>
+			<div class="modal-content">
+				<button class="modal-close" id="closeModal">&times;</button>
+				<div id="modalCardContainer"></div>
+			</div>
+		</section>
+	</main>
+
+	<script src="library.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,566 @@
+:root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+    --brand: #238636;
+    --accent: #58a6ff;
+    --danger: #f85149;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    background: var(--bg);
+    color: var(--text);
+}
+
+.app-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-content {
+    max-width: 1250px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.brand {
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    font-size: 18px;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    cursor: pointer;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: transparent;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent);
+}
+
+.btn.primary {
+    background: var(--brand);
+    border-color: transparent;
+    color: white;
+}
+
+.btn.primary:hover {
+    filter: brightness(1.1);
+}
+
+.library-main {
+    padding: 24px;
+    max-width: 1330px;
+    margin: 0 auto;
+}
+
+.filters {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+}
+
+.filters h2 {
+    margin: 0 0 16px;
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.filter-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.field {
+    display: grid;
+    gap: 6px;
+}
+
+.field label {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+input, select {
+    background: #0b0f14;
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.stats {
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 220px);
+    gap: 16px;
+    padding-bottom: 24px;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, 264px);
+    }
+}
+
+@media (min-width: 1200px) {
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, 308px);
+    }
+}
+
+.card-wrapper {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 14px;
+    overflow: hidden;
+    width: 308px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.card-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 1199px) {
+    .card-wrapper {
+        width: 264px;
+    }
+}
+
+@media (max-width: 767px) {
+    .card-wrapper {
+        width: 220px;
+    }
+}
+
+/* Disable hover effect in modal */
+#modalCardContainer .card-wrapper {
+    cursor: default;
+    width: auto;
+}
+
+#modalCardContainer .card-wrapper:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.card-wrapper .card {
+    margin: 0;
+    pointer-events: none;
+    width: 308px;
+    height: auto;
+    aspect-ratio: 420 / 600;
+    /* Scale down all internal sizes proportionally */
+    font-size: 0.733em; /* Scale down by ~27% (308/420 = 0.733) */
+}
+
+@media (max-width: 1199px) {
+    .card-wrapper .card {
+        width: 264px;
+        font-size: 0.629em; /* Scale down by ~37% (264/420 = 0.629) */
+    }
+}
+
+@media (max-width: 767px) {
+    .card-wrapper .card {
+        width: 220px;
+        font-size: 0.524em; /* Scale down by ~48% (220/420 = 0.524) */
+    }
+}
+
+/* Scale card elements to maintain proportions */
+/* Base sizes for 308px width (10% larger than 280px) */
+.card-wrapper .card .card-top {
+    padding: 8.8px 12.1px;
+}
+
+.card-wrapper .card .card-name {
+    font-size: 14.3px;
+}
+
+.card-wrapper .card .hp-value {
+    font-size: 13.2px;
+}
+
+.card-wrapper .card .hp-label {
+    font-size: 7.7px;
+}
+
+.card-wrapper .card .card-hero {
+    height: 220px; /* Scaled from 300px */
+}
+
+.card-wrapper .card .card-body {
+    padding: 8.8px 12.1px;
+    gap: 7.7px;
+}
+
+.card-wrapper .card .attack {
+    gap: 4.4px;
+}
+
+.card-wrapper .card .attack-desc {
+    font-size: 8.8px;
+}
+
+.card-wrapper .card .card-footer {
+    padding: 7.7px 12.1px;
+    height: 29.7px;
+    font-size: 8.8px;
+}
+
+.card-wrapper .card .type-pill {
+    font-size: 5.5px;
+    padding: 3.3px 5.5px;
+    margin-left: 5.5px;
+}
+
+.card-wrapper .card .rarity {
+    font-size: 7.7px;
+    padding: 1.1px 5.5px;
+}
+
+.card-wrapper .card .card-number {
+    font-size: 7.7px;
+    padding: 1.1px 5.5px;
+}
+
+/* Adjust for 264px width (10% larger than 240px) */
+@media (max-width: 1199px) {
+    .card-wrapper .card .card-top {
+        padding: 7.7px 9.9px;
+    }
+
+    .card-wrapper .card .card-name {
+        font-size: 12.1px;
+    }
+
+    .card-wrapper .card .hp-value {
+        font-size: 11px;
+    }
+
+    .card-wrapper .card .hp-label {
+        font-size: 6.6px;
+    }
+
+    .card-wrapper .card .card-hero {
+        height: 188.1px;
+    }
+
+    .card-wrapper .card .card-body {
+        padding: 7.7px 9.9px;
+        gap: 6.6px;
+    }
+
+    .card-wrapper .card .attack {
+        gap: 3.3px;
+    }
+
+    .card-wrapper .card .attack-desc {
+        font-size: 7.7px;
+    }
+
+    .card-wrapper .card .card-footer {
+        padding: 6.6px 9.9px;
+        height: 25.3px;
+        font-size: 7.7px;
+    }
+
+    .card-wrapper .card .type-pill {
+        font-size: 4.4px;
+        padding: 2.2px 4.4px;
+        margin-left: 4.4px;
+    }
+
+    .card-wrapper .card .rarity {
+        font-size: 6.6px;
+        padding: 1.1px 4.4px;
+    }
+
+    .card-wrapper .card .card-number {
+        font-size: 6.6px;
+        padding: 1.1px 4.4px;
+    }
+}
+
+/* Adjust for 220px width (10% larger than 200px) */
+@media (max-width: 767px) {
+    .card-wrapper .card .card-top {
+        padding: 6.6px 7.7px;
+    }
+
+    .card-wrapper .card .card-name {
+        font-size: 11px;
+    }
+
+    .card-wrapper .card .hp-value {
+        font-size: 9.9px;
+    }
+
+    .card-wrapper .card .hp-label {
+        font-size: 5.5px;
+    }
+
+    .card-wrapper .card .card-hero {
+        height: 157.3px;
+    }
+
+    .card-wrapper .card .card-body {
+        padding: 6.6px 7.7px;
+        gap: 5.5px;
+    }
+
+    .card-wrapper .card .attack {
+        gap: 3.3px;
+    }
+
+    .card-wrapper .card .attack-desc {
+        font-size: 6.6px;
+    }
+
+    .card-wrapper .card .card-footer {
+        padding: 5.5px 7.7px;
+        height: 20.9px;
+        font-size: 6.6px;
+    }
+
+    .card-wrapper .card .type-pill {
+        font-size: 4.4px;
+        padding: 2.2px 4.4px;
+        margin-left: 3.3px;
+    }
+
+    .card-wrapper .card .rarity {
+        font-size: 5.5px;
+        padding: 1.1px 3.3px;
+    }
+
+    .card-wrapper .card .card-number {
+        font-size: 5.5px;
+        padding: 1.1px 3.3px;
+    }
+}
+
+/* Modal Styles */
+.card-detail-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.card-detail-modal[hidden] {
+    display: none;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1001;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: visible;
+}
+
+.modal-close {
+    position: absolute;
+    top: -70px;
+    right: -70px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 1002;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: white;
+}
+
+#modalCardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Reset card to original size in modal - override all scaled styles (20% larger) */
+#modalCardContainer .card {
+    margin: 0;
+    width: 504px !important;
+    height: 720px !important;
+    max-width: 504px !important;
+    font-size: 1.2em !important;
+    transform: none !important;
+}
+
+/* Reset all scaled styles in modal to original values (20% larger) */
+#modalCardContainer .card .card-top {
+    padding: 14.4px 19.2px !important;
+}
+
+#modalCardContainer .card .card-name {
+    font-size: 24px !important;
+    letter-spacing: 0.6px !important;
+}
+
+#modalCardContainer .card .hp-value {
+    font-size: 21.6px !important;
+}
+
+#modalCardContainer .card .hp-label {
+    font-size: 12px !important;
+}
+
+#modalCardContainer .card .card-hero {
+    height: 360px !important;
+}
+
+#modalCardContainer .card .card-body {
+    padding: 14.4px 19.2px !important;
+    gap: 12px !important;
+}
+
+#modalCardContainer .card .attack {
+    gap: 7.2px !important;
+}
+
+#modalCardContainer .card .attack-desc {
+    font-size: 14.4px !important;
+}
+
+#modalCardContainer .card .card-footer {
+    padding: 12px 19.2px !important;
+    height: 48px !important;
+    font-size: 14.4px !important;
+}
+
+#modalCardContainer .card .type-pill {
+    font-size: 9.6px !important;
+    padding: 4.8px 9.6px !important;
+    margin-left: 9.6px !important;
+}
+
+#modalCardContainer .card .rarity {
+    font-size: 12px !important;
+    padding: 2.4px 9.6px !important;
+}
+
+#modalCardContainer .card .card-number {
+    font-size: 12px !important;
+    padding: 2.4px 9.6px !important;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--muted);
+}
+
+.empty-state h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .library-main {
+        padding: 16px;
+    }
+
+    .filter-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, 220px);
+        gap: 16px;
+        justify-content: center;
+    }
+}
+

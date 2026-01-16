@@ -1,0 +1,37 @@
+{
+  "name": "Chooper e5",
+  "cardNameColor": "#ffecb8",
+  "type": "Drone",
+  "typeTextColor": "#ffecb8",
+  "typeBorderColor": "#ffbb00",
+  "hp": 200,
+  "hpLabelColor": "#8b949e",
+  "hpValueColor": "#ffecb8",
+  "coverDataUrl": "data:image/png;base64,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",
+  "attacks": [
+    {
+      "name": "Thermite",
+      "damage": 75,
+      "description": "Launches a thermite charge that burns through armor and leaves lingering fire. Inferno Drone: +40 Damage, fire persists 3 turns, spreading to nearby enemies."
+    },
+    {
+      "name": "Holo Decoy Drone",
+      "damage": 0,
+      "description": "Projects a holographic clone to distract enemies, reducing their accuracy and drawing fire. Explosive Decoy: Decoy explodes when destroyed, dealing 15 damage to nearby enemies"
+    }
+  ],
+  "footerNote": "C. Journey | First Edition • 2025",
+  "rarity": "♠ Legendary",
+  "cardNumber": "#0000000017",
+  "borderColor": "#ffecb8",
+  "innerColor": "#252013",
+  "rarityTextColor": "#ffecb8",
+  "rarityBorderColor": "#ffbb00",
+  "cardNumberTextColor": "#ffecb8",
+  "cardNumberBorderColor": "#ffbb00",
+  "footerTextColor": "#ffecb8",
+  "atkNameColor": "#ffecb8",
+  "atkDmgColor": "#ff5757",
+  "atkDescColor": "#c0ae7c",
+  "exportedAt": "2025-10-31T19:13:19.883Z"
+}
